@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/src/">
+    <Project Path="src/Fx3I2cProgrammer.App/Fx3I2cProgrammer.App.csproj" />
     <Project Path="src/Fx3I2cProgrammer.Core/Fx3I2cProgrammer.Core.csproj" />
     <Project Path="src/Fx3I2cProgrammer.Hardware/Fx3I2cProgrammer.Hardware.csproj" />
   </Folder>

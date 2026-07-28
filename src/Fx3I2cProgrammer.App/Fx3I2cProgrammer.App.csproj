@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <UseWPF>true</UseWPF>
+    <RootNamespace>Fx3I2cProgrammer.App</RootNamespace>
+    <AssemblyName>Fx3I2cProgrammer</AssemblyName>
+    <!-- Must match the x86 CyUSB.dll pulled in transitively via the Hardware project. -->
+    <Platform>x86</Platform>
+    <PlatformTarget>x86</PlatformTarget>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Fx3I2cProgrammer.Core\Fx3I2cProgrammer.Core.csproj" />
+    <ProjectReference Include="..\Fx3I2cProgrammer.Hardware\Fx3I2cProgrammer.Hardware.csproj" />
+  </ItemGroup>
+
+</Project>
