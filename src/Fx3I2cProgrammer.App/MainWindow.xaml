@@ -137,7 +137,7 @@
 
         <!-- Progress -->
         <ProgressBar Grid.Row="4" Height="18" Margin="0,0,0,8"
-                     Minimum="0" Maximum="100" Value="{Binding ProgressPercent}" />
+                     Minimum="0" Maximum="100" Value="{Binding ProgressPercent, Mode=OneWay}" />
 
         <!-- Operation log -->
         <GroupBox Grid.Row="5" Header="Operation log">
