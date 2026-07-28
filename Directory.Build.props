@@ -1,0 +1,29 @@
+<Project>
+
+  <!--
+    Shared build settings for all projects in the Cypress FX3 I2C Programmer solution.
+
+    The Cypress CyUSB.dll is a .NET 2.0, x86 assembly that references
+    System.Windows.Forms, so the whole solution targets .NET Framework 4.8. Only the
+    projects that touch the native USB stack (Hardware, App) force the x86 platform;
+    Core and Tests stay AnyCPU so the test runner can load them in a 64-bit process.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <LangVersion>9.0</LangVersion>
+    <Platforms>AnyCPU;x86</Platforms>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <Deterministic>true</Deterministic>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <!-- Reference assemblies so net48 builds work even without the full targeting pack. -->
+    <DisableImplicitFrameworkReferences>false</DisableImplicitFrameworkReferences>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net48'">
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="All" />
+  </ItemGroup>
+
+</Project>
