@@ -47,6 +47,18 @@ To build only the app, or with Visual Studio's MSBuild:
 dotnet build src\Fx3I2cProgrammer.App\Fx3I2cProgrammer.App.csproj -c Release
 ```
 
+## Running the app
+
+Launch the built executable directly:
+
+```powershell
+.\src\Fx3I2cProgrammer.App\bin\Release\Fx3I2cProgrammer.exe
+```
+
+The process runs as a 32-bit application (required by the x86 `CyUSB.dll`) and loads
+`CyUSB.dll` from its own folder. If the main window does not appear, see
+[Troubleshooting](#troubleshooting).
+
 ## Running the tests
 
 ```powershell
@@ -107,3 +119,20 @@ persisted.
 4. Power-cycle and confirm the board boots from the EEPROM image.
 5. Erase the EEPROM and confirm it reads back blank and no longer boots that image.
 6. Repeat with a non-default I2C address if the board wiring supports it.
+
+## Troubleshooting
+
+- **The window does not appear / the app exits immediately.** Check the Windows
+  **Application** event log for a `.NET Runtime` error from `Fx3I2cProgrammer.exe`:
+
+  ```powershell
+  Get-WinEvent -FilterHashtable @{LogName='Application'; ProviderName='.NET Runtime'} -MaxEvents 5 |
+    Format-List TimeCreated, Message
+  ```
+
+- **`BadImageFormatException` when loading `CyUSB.dll`.** The app must run as x86. Rebuild
+  and confirm the produced `.exe` is 32-bit; do not force an AnyCPU/x64 run.
+- **No devices found on Refresh.** Confirm the Cypress USB driver is bound to the board and
+  that `CyUSB.dll` sits next to the executable.
+- **Programming fails immediately.** Use **Probe** first to confirm the standard Cypress
+  bootloader is running; custom firmware may need board-specific vendor commands.
